@@ -19,7 +19,8 @@ import UserLayout from 'src/layouts/UserLayout'
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
 
 // ** Contexts
-import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
+import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext';
+import {AuthProvider} from '../@core/context/authContext';
 
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
@@ -69,7 +70,7 @@ const App = (props: ExtendedAppProps) => {
         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-
+<AuthProvider>
       <SettingsProvider>
         <SettingsConsumer>
           {({ settings }) => {
@@ -77,6 +78,7 @@ const App = (props: ExtendedAppProps) => {
           }}
         </SettingsConsumer>
       </SettingsProvider>
+      </AuthProvider>
     </CacheProvider>
   )
 }

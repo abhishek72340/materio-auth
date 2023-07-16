@@ -1,42 +1,43 @@
-// ** React Imports
 import { useState, Fragment, ChangeEvent, MouseEvent, ReactNode } from 'react'
-
-// ** Next Imports
+import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import EyeOutline from 'mdi-material-ui/EyeOutline'
+import Facebook from 'mdi-material-ui/Facebook'
+import Github from 'mdi-material-ui/Github'
+import Google from 'mdi-material-ui/Google'
+import Twitter from 'mdi-material-ui/Twitter'
 import Link from 'next/link'
-
-// ** MUI Components
+import { useRouter } from 'next/router'
+import BlankLayout from 'src/@core/layouts/BlankLayout'
+import themeConfig from 'src/configs/themeConfig'
+import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
+import MuiCard, { CardProps } from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import Checkbox from '@mui/material/Checkbox'
+import Divider from '@mui/material/Divider'
 import FormControl from '@mui/material/FormControl'
+import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import InputLabel from '@mui/material/InputLabel'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
-import MuiCard, { CardProps } from '@mui/material/Card'
-import InputAdornment from '@mui/material/InputAdornment'
-import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
+import { useUserAuth } from '../../../@core/context/authContext'
+
+// import Box from '@mui/material/Box'
+
+// ** Next Imports
+// ** MUI Components
+// import Box from '@material-ui/core/Box';
 // ** Icons Imports
-import Google from 'mdi-material-ui/Google'
-import Github from 'mdi-material-ui/Github'
-import Twitter from 'mdi-material-ui/Twitter'
-import Facebook from 'mdi-material-ui/Facebook'
-import EyeOutline from 'mdi-material-ui/EyeOutline'
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-
 // ** Configs
-import themeConfig from 'src/configs/themeConfig'
-
 // ** Layout Import
-import BlankLayout from 'src/@core/layouts/BlankLayout'
-
 // ** Demo Imports
-import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 
 interface State {
   password: string
@@ -69,9 +70,14 @@ const RegisterPage = () => {
     password: '',
     showPassword: false
   })
+  const [email, setEmail] = useState<State>('')
+  const [userName, setUserName] = useState<State>('')
+  const [error, setError] = useState<State>('')
 
   // ** Hook
   const theme = useTheme()
+  const { signUp } = useUserAuth()
+  const router = useRouter()
 
   const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
@@ -81,6 +87,18 @@ const RegisterPage = () => {
   }
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    setError('')
+  }
+  const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    try {
+      await signUp(email, values.password)
+      if (email && values.password) {
+        router.push('/')
+      }
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   return (
@@ -165,10 +183,28 @@ const RegisterPage = () => {
               Adventure starts here 🚀
             </Typography>
             <Typography variant='body2'>Make your app management easy and fun!</Typography>
+            {error && <Alert severity='error'>{error}</Alert>}
+
           </Box>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='username' label='Username' sx={{ marginBottom: 4 }} />
-            <TextField fullWidth type='email' label='Email' sx={{ marginBottom: 4 }} />
+          <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+            <TextField
+              autoFocus
+              fullWidth
+              id='username'
+              label='Username'
+              sx={{ marginBottom: 4 }}
+              value={userName}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
+              required
+            />
+            <TextField
+              fullWidth
+              type='email'
+              label='Email'
+              sx={{ marginBottom: 4 }}
+              value={email}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-register-password'>Password</InputLabel>
               <OutlinedInput
