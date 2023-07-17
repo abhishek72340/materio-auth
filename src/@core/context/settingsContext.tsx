@@ -1,23 +1,11 @@
-/**
-    * @description      : 
-    * @author           : abhis
-    * @group            : 
-    * @created          : 18/07/2023 - 03:06:12
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 18/07/2023
-    * - Author          : abhis
-    * - Modification    : 
-**/
+
 // ** React Imports
 import { createContext, useState, ReactNode } from 'react'
+
 import { ThemeColor, ContentWidth } from 'src/@core/layouts/types'
 import themeConfig from 'src/configs/themeConfig'
 import ProtectedRoutes from 'src/protected-route';
 import { PaletteMode } from '@mui/material'
-
-import ProtectedRoute from '/src/protected-route/protected-route';
 
 // ** MUI Imports
 // ** ThemeConfig Import
@@ -55,11 +43,7 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   };
 
 
-  return(
-  <ProtectedRoute>
-  <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
-  </ProtectedRoute>
-  )
+  return(<SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>)
   
 }
   

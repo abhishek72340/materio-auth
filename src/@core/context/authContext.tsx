@@ -1,8 +1,9 @@
+
 import { createContext, useState, ReactNode, useContext,useEffect } from 'react'
+
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
-
+import {useRouter} from 'next/router';
 import { auth } from '../../firebase/firebase';
-
 
 // **Define value Datatype
 type AuthContextValue = {
@@ -17,7 +18,7 @@ type AuthContextValue = {
  const AuthProvider:React.FC = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user,setUser]=useState<State>(null)
-
+const router=useRouter();
   // **Signup
   const signUp:any=(email,password)=>{
        return createUserWithEmailAndPassword(auth,email,password)
@@ -30,6 +31,7 @@ type AuthContextValue = {
   
   const logoutHandler=()=>{
     localStorage.removeItem('token')
+    router.push('/pages/login')
     
   }
 useEffect(()=>{

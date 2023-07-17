@@ -14,8 +14,10 @@ import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 
 import {AuthProvider} from '../@core/context/authContext';
+import ProtectedRoute from '/src/protected-route/protected-route';
 
 import '../../styles/globals.css'
+
 
 // ** Loader Import
 // ** Emotion Imports
@@ -66,6 +68,7 @@ const App = (props: ExtendedAppProps) => {
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
 <AuthProvider>   
+<ProtectedRoute>
       <SettingsProvider>
         <SettingsConsumer>
                     {({ settings }) => {
@@ -73,6 +76,7 @@ const App = (props: ExtendedAppProps) => {
           }}
                   </SettingsConsumer>
       </SettingsProvider>
+      </ProtectedRoute>
          </AuthProvider>
     </CacheProvider>
   )

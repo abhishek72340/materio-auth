@@ -1,5 +1,6 @@
 
 import {useEffect} from 'react';
+
 import {useRouter} from 'next/router';
 import {useUserAuth} from 'src/@core/context/authContext';
 
@@ -14,7 +15,7 @@ const ProtectedRoute=({children})=>{
      router.push('/pages/login')
      return null
     }
-  },[user,router])
+  },[user])
  
   return children
 }
