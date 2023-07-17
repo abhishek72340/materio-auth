@@ -3,28 +3,28 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Router } from 'next/router'
-// ** Loader Import
 import NProgress from 'nprogress'
-// ** Emotion Imports
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext';
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
-// ** Config Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
-// ** Component Imports
 import themeConfig from 'src/configs/themeConfig'
 import UserLayout from 'src/layouts/UserLayout'
-// ** Contexts
 import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 
-// ** Utils Imports
 import {AuthProvider} from '../@core/context/authContext';
-// ** React Perfect Scrollbar Style
-// ** Global css styles
-import PrivateRoute from '/src/@core/hooks/usePrivate';
 
 import '../../styles/globals.css'
+
+// ** Loader Import
+// ** Emotion Imports
+// ** Config Imports
+// ** Component Imports
+// ** Contexts
+// ** Utils Imports
+// ** React Perfect Scrollbar Style
+// ** Global css styles
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -65,19 +65,15 @@ const App = (props: ExtendedAppProps) => {
         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-<AuthProvider>
-     <PrivateRoute>
+<AuthProvider>   
       <SettingsProvider>
         <SettingsConsumer>
-          
-          {({ settings }) => {
+                    {({ settings }) => {
             return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
           }}
-          
-        </SettingsConsumer>
+                  </SettingsConsumer>
       </SettingsProvider>
-    </PrivateRoute>
-      </AuthProvider>
+         </AuthProvider>
     </CacheProvider>
   )
 }

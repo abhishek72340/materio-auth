@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {useUserAuth} from 'src/@core/context/authContext';
 
 
-const PrivateRoute=({children})=>{
+const ProtectedRoute=({children})=>{
   const {user}=useUserAuth();
   const router = useRouter()
 
@@ -12,8 +12,8 @@ const PrivateRoute=({children})=>{
      router.push('/pages/login')
      return null
     }
-  },[user])
+  },[user,router])
  
   return children
 }
-export default PrivateRoute;
+export default ProtectedRoute;

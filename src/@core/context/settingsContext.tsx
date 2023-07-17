@@ -1,14 +1,15 @@
 // ** React Imports
 import { createContext, useState, ReactNode } from 'react'
-
-// ** MUI Imports
+import { ThemeColor, ContentWidth } from 'src/@core/layouts/types'
+import themeConfig from 'src/configs/themeConfig'
+import ProtectedRoutes from 'src/protected-route';
 import { PaletteMode } from '@mui/material'
 
-// ** ThemeConfig Import
-import themeConfig from 'src/configs/themeConfig'
+import ProtectedRoute from '/src/protected-route/protected-route';
 
+// ** MUI Imports
+// ** ThemeConfig Import
 // ** Types Import
-import { ThemeColor, ContentWidth } from 'src/@core/layouts/types'
 
 export type Settings = {
   mode: PaletteMode
@@ -41,7 +42,9 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     setSettings(updatedSettings)
   }
 
-  return <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
+  return <ProtectedRoute>
+    <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
+    </ProtectedRoute>
 }
 
 export const SettingsConsumer = SettingsContext.Consumer
