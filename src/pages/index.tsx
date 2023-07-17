@@ -1,26 +1,22 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid'
-
+import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
 // ** Icons Imports
-import Poll from 'mdi-material-ui/Poll'
 import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import HelpCircleOutline from 'mdi-material-ui/HelpCircleOutline'
-import BriefcaseVariantOutline from 'mdi-material-ui/BriefcaseVariantOutline'
-
-// ** Custom Components Imports
+import Poll from 'mdi-material-ui/Poll'
 import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
-
-// ** Styled Component Import
+// ** Custom Components Imports
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
-
-// ** Demo Components Imports
-import Table from 'src/views/dashboard/Table'
-import Trophy from 'src/views/dashboard/Trophy'
-import TotalEarning from 'src/views/dashboard/TotalEarning'
-import StatisticsCard from 'src/views/dashboard/StatisticsCard'
-import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
+// ** Styled Component Import
 import DepositWithdraw from 'src/views/dashboard/DepositWithdraw'
+// ** Demo Components Imports
 import SalesByCountries from 'src/views/dashboard/SalesByCountries'
+import StatisticsCard from 'src/views/dashboard/StatisticsCard'
+import Table from 'src/views/dashboard/Table'
+import TotalEarning from 'src/views/dashboard/TotalEarning'
+import Trophy from 'src/views/dashboard/Trophy'
+import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
+import Grid from '@mui/material/Grid'
 
 const Dashboard = () => {
   return (

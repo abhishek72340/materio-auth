@@ -1,9 +1,9 @@
+
 // ** React Imports
 import { createContext, useState, ReactNode, useContext,useEffect } from 'react'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
 
 import { auth } from '../../firebase/firebase';
-
 
 
 // **Define value Datatype
@@ -18,15 +18,15 @@ type AuthContextValue = {
 
  const AuthProvider:React.FC = ({ children }: { children: ReactNode }) => {
   // ** State
-  const [user,setUser]=useState<State>('')
+  const [user,setUser]=useState<State>(null)
 
   // **Signup
-  const signUp=(email,password)=>{
+  const signUp:any=(email,password)=>{
        return createUserWithEmailAndPassword(auth,email,password)
   }
 
   // **Login
-  const logIn=(email,password)=>{
+  const logIn:any=(email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
   }
 

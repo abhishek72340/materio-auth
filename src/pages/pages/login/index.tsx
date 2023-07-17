@@ -1,5 +1,6 @@
 // ** React Imports
 import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
+
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import Facebook from 'mdi-material-ui/Facebook'
@@ -27,7 +28,6 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-
 import {useUserAuth} from '../../../@core/context/authContext'
 
 // ** Next Imports
@@ -95,8 +95,7 @@ const LoginPage = () => {
 await logIn(email,values.password)
 if(email && values.password){
   router.push('/')
-  
-}
+  }
     }
     catch(error){
       setError(error.message)

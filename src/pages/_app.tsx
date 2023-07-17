@@ -1,34 +1,29 @@
 // ** Next Imports
-import Head from 'next/head'
-import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-
+import Head from 'next/head'
+import { Router } from 'next/router'
 // ** Loader Import
 import NProgress from 'nprogress'
-
 // ** Emotion Imports
-import { CacheProvider } from '@emotion/react'
-import type { EmotionCache } from '@emotion/cache'
-
-// ** Config Imports
-import themeConfig from 'src/configs/themeConfig'
-
-// ** Component Imports
-import UserLayout from 'src/layouts/UserLayout'
-import ThemeComponent from 'src/@core/theme/ThemeComponent'
-
-// ** Contexts
+import 'react-perfect-scrollbar/dist/css/styles.css'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext';
-import {AuthProvider} from '../@core/context/authContext';
+import ThemeComponent from 'src/@core/theme/ThemeComponent'
+// ** Config Imports
+import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
+// ** Component Imports
+import themeConfig from 'src/configs/themeConfig'
+import UserLayout from 'src/layouts/UserLayout'
+// ** Contexts
+import type { EmotionCache } from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
 
 // ** Utils Imports
-import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
-
+import {AuthProvider} from '../@core/context/authContext';
 // ** React Perfect Scrollbar Style
-import 'react-perfect-scrollbar/dist/css/styles.css'
-
 // ** Global css styles
+import PrivateRoute from '/src/@core/hooks/usePrivate';
+
 import '../../styles/globals.css'
 
 // ** Extend App Props with Emotion
@@ -71,13 +66,17 @@ const App = (props: ExtendedAppProps) => {
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
 <AuthProvider>
+     <PrivateRoute>
       <SettingsProvider>
         <SettingsConsumer>
+          
           {({ settings }) => {
             return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
           }}
+          
         </SettingsConsumer>
       </SettingsProvider>
+    </PrivateRoute>
       </AuthProvider>
     </CacheProvider>
   )

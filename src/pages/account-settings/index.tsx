@@ -1,27 +1,23 @@
 // ** React Imports
 import { SyntheticEvent, useState } from 'react'
-
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
+import AccountOutline from 'mdi-material-ui/AccountOutline'
+import InformationOutline from 'mdi-material-ui/InformationOutline'
+import LockOpenOutline from 'mdi-material-ui/LockOpenOutline'
+import 'react-datepicker/dist/react-datepicker.css'
+import TabAccount from 'src/views/account-settings/TabAccount'
+import TabInfo from 'src/views/account-settings/TabInfo'
+import TabSecurity from 'src/views/account-settings/TabSecurity'
+// ** Icons Imports
+import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
-import TabContext from '@mui/lab/TabContext'
-import { styled } from '@mui/material/styles'
-import MuiTab, { TabProps } from '@mui/material/Tab'
-
-// ** Icons Imports
-import AccountOutline from 'mdi-material-ui/AccountOutline'
-import LockOpenOutline from 'mdi-material-ui/LockOpenOutline'
-import InformationOutline from 'mdi-material-ui/InformationOutline'
-
 // ** Demo Tabs Imports
-import TabInfo from 'src/views/account-settings/TabInfo'
-import TabAccount from 'src/views/account-settings/TabAccount'
-import TabSecurity from 'src/views/account-settings/TabSecurity'
-
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import { styled } from '@mui/material/styles'
 // ** Third Party Styles Imports
-import 'react-datepicker/dist/react-datepicker.css'
+import MuiTab, { TabProps } from '@mui/material/Tab'
 
 const Tab = styled(MuiTab)<TabProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
