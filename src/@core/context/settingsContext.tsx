@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : abhis
+    * @group            : 
+    * @created          : 18/07/2023 - 03:06:12
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 18/07/2023
+    * - Author          : abhis
+    * - Modification    : 
+**/
 // ** React Imports
 import { createContext, useState, ReactNode } from 'react'
 import { ThemeColor, ContentWidth } from 'src/@core/layouts/types'
@@ -40,11 +52,15 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
 
   const saveSettings = (updatedSettings: Settings) => {
     setSettings(updatedSettings)
-  }
+  };
 
-  return <ProtectedRoute>
-    <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
-    </ProtectedRoute>
+
+  return(
+  <ProtectedRoute>
+  <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
+  </ProtectedRoute>
+  )
+  
 }
-
+  
 export const SettingsConsumer = SettingsContext.Consumer

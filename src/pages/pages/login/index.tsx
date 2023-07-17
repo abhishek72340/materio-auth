@@ -70,8 +70,6 @@ const LoginPage = () => {
   const [email,setEmail]=useState<State>('')
   const [error,setError]=useState<State>('')
 
-
-
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
@@ -92,16 +90,19 @@ const LoginPage = () => {
      e.preventDefault();
      setError('')
     try{
-await logIn(email,values.password)
+const userCredential=await logIn(email,values.password)
 if(email && values.password){
   router.push('/')
   }
+  const token = await userCredential.user.getIdToken();
+      localStorage.setItem('token', token);
     }
     catch(error){
       setError(error.message)
     }
 
   }
+  
 
   return (
     <Box className='content-center'>

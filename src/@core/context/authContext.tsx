@@ -1,5 +1,3 @@
-
-// ** React Imports
 import { createContext, useState, ReactNode, useContext,useEffect } from 'react'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
 
@@ -29,12 +27,11 @@ type AuthContextValue = {
   const logIn:any=(email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
   }
-
-  // **Logout
-  const logOut=()=>{
-    return signOut(auth);
-  }
   
+  const logoutHandler=()=>{
+    localStorage.removeItem('token')
+    
+  }
 useEffect(()=>{
   const unSubscribe=onAuthStateChanged(auth,(createUser)=>{
     setUser(unSubscribe);
@@ -42,8 +39,12 @@ useEffect(()=>{
   return ()=>{
 unSubscribe();
   }
+},[]);
+
+useEffect(()=>{
+  const token=localStorage.getItem('token')
 },[])
-  return <AuthContext.Provider value={{logOut,user, signUp, logIn}}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{logoutHandler,user, signUp, logIn}}>{children}</AuthContext.Provider>
 }
 
 const useUserAuth=()=>useContext(AuthContext);

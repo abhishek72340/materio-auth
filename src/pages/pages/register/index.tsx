@@ -87,19 +87,26 @@ const RegisterPage = () => {
   }
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    setError('')
-  }
+   
+  };
+
+  
   const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
+    setError('');
     try {
-      await signUp(email, values.password)
+      const userCredential=await signUp(email, values.password)
       if (email && values.password) {
         router.push('/')
-      }
-    } catch (error) {
+      };
+      const token = await userCredential.user.getIdToken();
+      localStorage.setItem('token', token);
+    } 
+    catch (error) {
       setError(error.message)
     }
   }
+
 
   return (
     <Box className='content-center'>

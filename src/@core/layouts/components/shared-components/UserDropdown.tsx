@@ -40,7 +40,7 @@ const UserDropdown = () => {
 
   // ** Hooks
   const router = useRouter()
-  const { logOut } = useUserAuth()
+  const { logoutHandler } = useUserAuth()
 
   const handleDropdownOpen = (event: SyntheticEvent) => {
     setAnchorEl(event.currentTarget)
@@ -53,14 +53,6 @@ const UserDropdown = () => {
     setAnchorEl(null)
   }
 
-  const logoutHandler = async () => {
-    try {
-      await logOut()
-      router.push('/pages/login')
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const styles = {
     py: 2,
@@ -156,7 +148,6 @@ const UserDropdown = () => {
           </Box>
         </MenuItem>
         <Divider />
-        {/* <MenuItem sx={{ py: 2 }} onClick={() => handleDropdownClose('/pages/login')}> */}
         <MenuItem sx={{ py: 2 }} onClick={logoutHandler}>
           <LogoutVariant sx={{ marginRight: 2, fontSize: '1.375rem', color: 'text.secondary' }} />
           Logout
