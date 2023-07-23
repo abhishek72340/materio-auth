@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
-import {useUserAuth} from '/src/@core/context/authContext'
+import {useUserAuth} from '/src/context/authContext'
 
 // ** Next Import
 // ** MUI Imports

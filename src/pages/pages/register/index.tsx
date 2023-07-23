@@ -1,3 +1,15 @@
+/**
+    * @description      :
+    * @author           : abhis
+    * @group            :
+    * @created          : 23/07/2023 - 15:19:15
+    *
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 23/07/2023
+    * - Author          : abhis
+    * - Modification    :
+**/
 import { useState, Fragment, ChangeEvent, MouseEvent, ReactNode } from 'react'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
@@ -27,7 +39,7 @@ import { styled, useTheme } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { useUserAuth } from '../../../@core/context/authContext'
+import { useUserAuth } from '../../../context/authContext'
 
 // import Box from '@mui/material/Box'
 
@@ -87,10 +99,10 @@ const RegisterPage = () => {
   }
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-   
+
   };
 
-  
+
   const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setError('');
@@ -101,7 +113,7 @@ const RegisterPage = () => {
       };
       const token = await userCredential.user.getIdToken();
       localStorage.setItem('token', token);
-    } 
+    }
     catch (error) {
       setError(error.message)
     }

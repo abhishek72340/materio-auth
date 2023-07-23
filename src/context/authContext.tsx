@@ -1,9 +1,8 @@
-
 import { createContext, useState, ReactNode, useContext,useEffect } from 'react'
 
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import {useRouter} from 'next/router';
-import { auth } from '../../firebase/firebase';
+import { auth } from '/src/firebase/firebase';
 
 // **Define value Datatype
 type AuthContextValue = {
@@ -19,6 +18,7 @@ type AuthContextValue = {
   // ** State
   const [user,setUser]=useState<State>(null)
 const router=useRouter();
+
   // **Signup
   const signUp:any=(email,password)=>{
        return createUserWithEmailAndPassword(auth,email,password)
@@ -28,24 +28,27 @@ const router=useRouter();
   const logIn:any=(email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
   }
-  
+
   const logoutHandler=()=>{
     localStorage.removeItem('token')
     router.push('/pages/login')
-    
+
   }
 useEffect(()=>{
+
   const unSubscribe=onAuthStateChanged(auth,(createUser)=>{
     setUser(unSubscribe);
   })
+
   return ()=>{
 unSubscribe();
   }
 },[]);
 
 useEffect(()=>{
-  const token=localStorage.getItem('token')
+  localStorage.getItem('token')
 },[])
+
   return <AuthContext.Provider value={{logoutHandler,user, signUp, logIn}}>{children}</AuthContext.Provider>
 }
 

@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext';
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
@@ -12,10 +11,10 @@ import themeConfig from 'src/configs/themeConfig'
 import UserLayout from 'src/layouts/UserLayout'
 import type { EmotionCache } from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
-
-import {AuthProvider} from '../@core/context/authContext';
 import ProtectedRoute from '/src/protected-route/protected-route';
+import {AuthProvider} from '../context/authContext';
 
+import 'react-perfect-scrollbar/dist/css/styles.css'
 import '../../styles/globals.css'
 
 

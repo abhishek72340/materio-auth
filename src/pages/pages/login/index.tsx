@@ -1,6 +1,5 @@
 // ** React Imports
 import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
-
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import Facebook from 'mdi-material-ui/Facebook'
@@ -28,7 +27,8 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import {useUserAuth} from '../../../@core/context/authContext'
+
+import {useUserAuth} from '../../../context/authContext'
 
 // ** Next Imports
 // ** MUI Components
@@ -41,6 +41,7 @@ import {useUserAuth} from '../../../@core/context/authContext'
 interface State {
   password: string
   showPassword: boolean
+  email:string
 }
 
 // ** Styled Components
